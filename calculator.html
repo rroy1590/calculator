@@ -24,6 +24,7 @@ function updateField(val)
 	label = a+ '<sup>' + b + '</sup> = ' + c;
 	current = document.getElementById('label').innerHTML;
 	
+	//null for val signifies forced update (USER EXPLICIT HIT OF ENTER/ENTER BUTTON)
 	if(val != null && (label == current || val != document.calculator.number2)) {
 		return;
 	}
@@ -31,6 +32,7 @@ function updateField(val)
 	document.getElementById('label').innerHTML = label;
 	document.getElementById('log').innerHTML += '<br>' + document.getElementById('label').innerHTML;
 	
+	//prompt for copy
 	if(document.getElementById("cbox").checked == true)
 	{
 		window.prompt("Copy to clipboard: Ctrl+C, Enter", c);

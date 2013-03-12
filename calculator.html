@@ -3,20 +3,13 @@
 <head>
 <title>Calculator</title>  
 <script language="javascript" type="text/javascript"> 
- 
-function power(){  
-	a=parseFloat(document.getElementById('number1').value);  
-	b=parseFloat(document.getElementById('number2').value);  
-	c=Math.pow(a,b);  
-	document.getElementById('label').innerHTML=c; 
-	this.updateField(null); 
-}  
 
 function updateField(val)
 {
 	a=parseFloat(document.getElementById('number1').value);  
 	b=parseFloat(document.getElementById('number2').value);
 	
+	//debug message
 	if( isNaN(a) || isNaN(b) )
 	{
 		document.getElementById('enter_btn').value = ">Not A Number!"
@@ -46,9 +39,9 @@ function updateField(val)
 
 function checkKeyPress(e)
 {
+	//enter key
 	if (e.keyCode == 13) 
 	{
-	   var tb = document.getElementById("number2");
        updateField(null);
        return false;
 	}

@@ -1,0 +1,62 @@
+<html>  
+  
+<head>
+<title>Calculator</title>  
+<script language="javascript" type="text/javascript"> 
+ 
+function power(){  
+	a=parseFloat(document.getElementById('number1').value);  
+	b=parseFloat(document.getElementById('number2').value);  
+	c=Math.pow(a,b);  
+	document.getElementById('label').innerHTML=c; 
+	this.updateField(null); 
+}  
+
+function updateField(val)
+{
+	a=parseFloat(document.getElementById('number1').value);  
+	b=parseFloat(document.getElementById('number2').value);
+	c = Math.pow(a,b);
+	
+	label = a+ '<sup>' + b + '</sup> = ' + c;
+	test = document.getElementById('label').innerHTML;
+	
+	if(val != null && (label == test || val != document.calculator.number2)) {
+		return;
+	}
+	
+	document.getElementById('label').innerHTML = a+ '<sup>' + b + '</sup> = ' + c;
+	document.getElementById('log').innerHTML += '<br>' + document.getElementById('label').innerHTML;
+	
+	if(document.getElementById("cbox").checked == true)
+	{
+		window.prompt("Copy to clipboard: Ctrl+C, Enter", c);
+	}
+}
+
+function checkKeyPress(e)
+{
+	if (e.keyCode == 13) 
+	{
+	   var tb = document.getElementById("number2");
+       updateField(null);
+       return false;
+	}
+}
+
+</script>
+  
+</head>  
+ 
+<body onload="focusOnLoad()">
+	<div class ="main">
+		<div><h2 id="label">0<sup>0</sup> = 1 </h2></div>
+		<form name="calculator">
+			<input type="text" id="number1" value="" autofocus="autofocus" onkeypress="return checkKeyPress(event)" onchange="updateField(this)"> to the power of: <input type="text" id="number2" value="0" onkeypress="return checkKeyPress(event)" onchange="updateField(this)"><input type="button" onclick="updateField(null)" value=">ENTER" style="border-style:none;" />
+		</form>
+		 Prompt To Copy?<input type="checkbox" id="cbox" value="No" />
+		<div id="log"></div>  
+	</div>
+</body>
+  
+</html>
